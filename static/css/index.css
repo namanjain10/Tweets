@@ -1,0 +1,110 @@
+h3 {
+    color: rgb(37, 74, 198);
+}
+
+h1 {
+    color: rgb(75, 6, 150);
+}
+
+h2 {
+    color: rgb(40, 105, 191);
+}
+
+h4 {
+    color: rgb(40, 153, 168);
+}
+
+td {
+    font-size: 14px;
+}
+
+/* a{
+    color : rgb(10, 137, 255);
+} */
+
+.table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
+   background-color: rgb(232, 245, 238);
+}
+body{
+        padding-top: 60px;
+}
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: rgb(245, 247, 235);
+}
+
+.season_table {
+    padding-left: 10px;
+}
+
+.season_table h2 {
+    text-align: center;
+}
+
+#search {
+        background-color: rgb(225, 250, 235);
+}
+
+#search_bar {
+    padding-top: 50px;
+}
+
+#text {
+    margin: auto;
+    text-align: center;
+    padding: 100px 20px 10px 10px;
+    font-size: 18px;
+}
+
+#searchclear, #searchclear1, #searchclear2{
+    position: absolute;
+    right: 15px;
+    top: 0;
+    bottom: 0;
+    height: 30px;
+    margin: auto;
+    font-size: 30px;
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(153, 163, 145) ;
+}
+
+#player_details {
+    /* float : left; */
+    /* width : 70%; */
+    padding-left: 20px;
+}
+
+.carousel {
+  width:100% ;
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    min-width: 100%;
+    max-width: none;
+    height: 400px;
+}
+
+.carousel-caption {
+    font-size: 25px;
+    color: yellow;
+    font-weight: bold;
+}
+
+thead {
+    background-color: rgb(190, 218, 242);
+}
+
+.table-responsive {
+    padding-top: 18px;
+}
+
+#player_img {
+    /* float : left; */
+    padding : 50px ;
+}
+
+#dropdownMenu1 {
+    height: auto;
+    max-height: 375px;
+    overflow-x: hidden;
+}

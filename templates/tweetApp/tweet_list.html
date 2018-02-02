@@ -1,0 +1,16 @@
+{% extends "tweetApp/index.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <h1>List</h1>
+
+    {% for p in object_list %}
+
+    {{p.content}}<br>
+    {{p.user}} | created {{p.dataCreated|timesince}} ago | updated {{p.dataUpdated|timesince}} ago <a href = '/detail/{{p.id}}'> view</a><br>
+    <a href="/delete/{{p.id}}"> Delete </a><a href="/update/{{p.id}}"> Update</a><br>
+    <br>
+    {% endfor %}
+
+
+{% endblock content%}
