@@ -1,11 +1,6 @@
-{% extends "tweetApp/index.html" %}
-{% load staticfiles %}
-
-{% block content %}
-    <h1>{{titles}}</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="{{titles}}" />
-    </form>
-{% endblock content%}
+<form action="{% if action_url %}{{action_url}}{%endif%}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="btn" type="submit" value="{{titles}}">
+    <hr>
+</form>

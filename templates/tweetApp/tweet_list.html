@@ -2,15 +2,35 @@
 {% load staticfiles %}
 
 {% block content %}
-    <h1>List</h1>
 
-    {% for p in object_list %}
+    <div class="row">
+        <div class="col-md-3" style="text-align:center">
+            <h2>{{request.user}}</h2>
+        </div>
+        <div class="col-md-9">
+            <div class="">
+                {% include "tweetApp/form.html" with form=create_form action_url='/create/' titles='Tweet'%}
+            </div>
 
-    {{p.content}}<br>
-    {{p.user}} | created {{p.dataCreated|timesince}} ago | updated {{p.dataUpdated|timesince}} ago <a href = '/detail/{{p.id}}'> view</a><br>
-    <a href="/delete/{{p.id}}"> Delete </a><a href="/update/{{p.id}}"> Update</a><br>
-    <br>
-    {% endfor %}
+            <ul class="media-list">
+                {% for p in object_list %}
+                <li class="media" style="border: 1px solid rgba(221, 221, 224, 1); padding:8px">
+                    <div class="media-right">
+                        <strong>{{p.user}}</strong><br>
+                        <div style='font-size:20px'>
+                            {{p.content}}
+                        </div>
+                        <mark>created</mark> {{p.dataCreated|timesince}} ago | <mark>updated</mark> {{p.dataUpdated|timesince}} ago <br>
+                        <a href = '/detail/{{p.id}}'> View </a>|<a href="/delete/{{p.id}}"> Delete </a>|<a href="/update/{{p.id}}"> Update</a><br>
+                        <br>
+                    </div>
+                </li>
+                {% empty %}
+                <div class="jumbotron" style = "text-align:center">No Tweets Yet!!!</div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 
 
 {% endblock content%}

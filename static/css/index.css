@@ -1,18 +1,18 @@
-h3 {
-    color: rgb(37, 74, 198);
+/* h3 {
+    color: rgb(190, 38, 38);
 }
 
 h1 {
-    color: rgb(75, 6, 150);
+    color: rgb(126, 52, 52);
 }
 
 h2 {
-    color: rgb(40, 105, 191);
+    color: rgb(170, 47, 47);
 }
 
 h4 {
-    color: rgb(40, 153, 168);
-}
+    color: rgb(199, 41, 41);
+} */
 
 td {
     font-size: 14px;
@@ -25,11 +25,21 @@ td {
 .table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
    background-color: rgb(232, 245, 238);
 }
+
 body{
-        padding-top: 60px;
+    padding-top: 60px;
 }
+
+.navbar {
+    background-color:rgb(121, 99, 99);
+}
+
 .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
    background-color: rgb(245, 247, 235);
+}
+
+.navbar a{
+    color: white;
 }
 
 .season_table {
