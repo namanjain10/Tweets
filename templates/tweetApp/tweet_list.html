@@ -8,29 +8,37 @@
             <h2>{{request.user}}</h2>
         </div>
         <div class="col-md-9">
-            <div class="">
+            <div class="form">
                 {% include "tweetApp/form.html" with form=create_form action_url='/create/' titles='Tweet'%}
             </div>
 
-            <ul class="media-list">
+            <div class="put">
+
+            </div>
+
+            <!-- <ul class="media-list">
                 {% for p in object_list %}
-                <li class="media" style="border: 1px solid rgba(221, 221, 224, 1); padding:8px">
+                <li class="media" style="border: 1px solid rgba(221, 221, 224, 1); padding:6px">
                     <div class="media-right">
                         <strong>{{p.user}}</strong><br>
+                        <br>
                         <div style='font-size:20px'>
                             {{p.content}}
                         </div>
+                        <br>
                         <mark>created</mark> {{p.dataCreated|timesince}} ago | <mark>updated</mark> {{p.dataUpdated|timesince}} ago <br>
                         <a href = '/detail/{{p.id}}'> View </a>|<a href="/delete/{{p.id}}"> Delete </a>|<a href="/update/{{p.id}}"> Update</a><br>
-                        <br>
+
                     </div>
                 </li>
                 {% empty %}
                 <div class="jumbotron" style = "text-align:center">No Tweets Yet!!!</div>
                 {% endfor %}
-            </ul>
+            </ul> -->
         </div>
     </div>
-
-
 {% endblock content%}
+
+{% block js %}
+    <script type="text/javascript" src='{% static "js/tweet_list.js" %}'></script>
+{% endblock js %}

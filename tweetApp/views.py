@@ -24,10 +24,7 @@ class TweetListView(ListView):
         context['create_form'] = TweetForm()
         context['action_url'] = '/list'
         return context
-    #print (User.objects.filter(username = 'naman').values('id'))
-    #print (User.object.filter(user_id = 2).get('username'))
-    #queryset = Tweet.objects.filter(user_id = 1).all()
-
+    
 class TweetCreateView(FormLoginMixin, CreateView):
     form_class = TweetForm
     template_name = 'tweetApp/tweet_create.html'
