@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     url(r'^list/', views.TweetList.as_view()),
+    url(r'^create/', views.TweetCreate.as_view()),
 ]

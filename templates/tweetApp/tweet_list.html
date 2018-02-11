@@ -10,12 +10,13 @@
         <div class="col-md-9">
             <div class="form">
                 {% include "tweetApp/form.html" with form=create_form action_url='/create/' titles='Tweet'%}
+                <hr>
             </div>
 
             <div class="put">
 
             </div>
-
+            <div class="loader"></div>
             <!-- <ul class="media-list">
                 {% for p in object_list %}
                 <li class="media" style="border: 1px solid rgba(221, 221, 224, 1); padding:6px">

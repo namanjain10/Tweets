@@ -7,49 +7,117 @@ function dateTime(textDate) {
     var sec = Math.floor((now%(60*60))%(60));
     return (days + " days " + hr+ " hr " + min + " min ");
 }
+var charstart = 140;
 
-// $('.form').
+$('.formClass').append('<span id="count">'+ charstart +'</span>');
 
-$(document).ready(function (){
+$('.formClass textarea').keyup(function () {
+    console.log();
+    $('#count').text(charstart - $(this).val().length);
+})
+
+var nextLink = null;
+var next = 0;
+var hasNext = true;
+
+function ajaxcall(url) {
+    console.log(url);
+
+    if (!url) {
+        console.log('start');
+        urlLink = "/api/list/";
+        next = 1;
+    }
+    else {
+        console.log('continue');
+        urlLink = url;
+        next = 0;
+
+    }
     $.ajax({
-        url: "/api/list/",
+        url: urlLink,
+        method : "GET",
         success: function(response){
+            $('.loader').css('display','none');
             if (response.length == 0) {
-                console.log('now');
                 $('.put').append("<div class='jumbotron' style = 'text-align:center'>No Tweets Yet!!!</div>");
             }
             else {
-                r = '<ul class="media-list">';
-                //console.log(response.results);
+                var r = $('<ul>').addClass("media-list");
+                console.log(response.next);
+                if (response.next == null) {
+                    hasNext = false;
+                }
+                nextLink = response.next;
                 $.each(response.results, function(i,item) {
 
                 	dataCreated = dateTime(item.dataCreated);
                     dataUpdated = dateTime(item.dataUpdated);
 
-                    r += "<li class='media' style='border :1px solid rgb(221, 221, 224); padding :10px'><div class='media-right'> <strong>" + item.user.username + "</strong><br><br><div style='font-size:20px'>" + item.content + "</div><br><mark>created </mark>" + dataCreated + " ago | <mark>updated </mark>" + dataUpdated + " ago <br><a href = '/detail/" + item.id + "'> View </a>|<a href='/delete/" + item.id + "'> Delete </a>|<a href='/update/" + item.id + "'> Update</a><br>";
+                    var t = $("<li>").addClass('media').css('border','1px solid rgb(221, 221, 224)').css('padding','10px').append(
+                        $('<div>').addClass('media-right').append(
+                            $('<strong>').text(item.user.username),
+                            $('<br><br>'),
+                            $('<div>').css('font-size','20px').css('font-family','ariel').text(item.content),
+                            $('<br>'),$('<mark>').text('created '), dataCreated,
+                            " ago | ", $("<mark>") .text("updated"), dataUpdated + " ago ",
+                            $('<br>'),$('<a>').attr('href','/detail/'+item.id).text(' View')," | ",
+                            $('<a>').attr('href','/delete/'+item.id).text(' Delete'), ' | ',
+                            $('<a>').attr('href','/update/'+item.id).text(' Update'),
+                            $('<br>'),
+                            ))
+                            r.append(t)
                     });
-
-                $('.put').append(r+'</ul>');
+                if (next == 1) {
+                    $('.put').html(r);
+                }
+                else {
+                    $('.put').append(r);
+                }
             }
         },
         error : function () {
             console.log("error !!! Cant find the tweets at this moment ");
         }
     });
+}
 
+$('.formClass').submit(function (event) {
+    event.preventDefault();
+    var formData = $(this).serialize();
+    var className = $(this).attr('class');
+    $.ajax({
+        url: "/api/create/",
+        data: formData,
+        method : "POST",
+        success: function(response){
+            $('.' + className + " textarea").val('');
+            $('#count').text(charstart);
+            ajaxcall();
+        }
+    });
+})
+var i=0;
 
+$(document).ready(function (){
+    ajaxcall();
+    scroll();
 })
 
-// $(window).ajaxComplete(function () {
-//     setInterval(function() {
-//         var busy = false;
-//         if(($(window).scrollTop() + $(window).height()) > $('body').height() && !busy) {
-//             busy = true;
-//             //$this.find('.loading-bar').html('Loading Posts');
-//             console.log('hey ok jajakakakak');
-//             setTimeout(function() {
-//                 console.log('hey ok then');
-//             }, 500);
-//         }
-//     }, 1000);
-// })
+function scroll() {
+    setInterval(function() {
+        var busy = false;
+        if(($(window).scrollTop() + $(window).height()) > $('body').height() && !busy) {
+            busy = true;
+            $('.loader').css('display','block');
+            //$this.find('.loading-bar').html('Loading Posts');
+            console.log(nextLink, i);
+            if (hasNext == true) {
+                ajaxcall(nextLink);
+            }
+            else {
+                $('.loader').css('display','none');
+            }
+        }
+    }, 1000);
+}

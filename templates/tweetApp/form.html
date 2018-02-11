@@ -1,6 +1,5 @@
-<form action="{% if action_url %}{{action_url}}{%endif%}" method="post">
+<form class="formClass" action="{% if action_url %}{{action_url}}{%endif%}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input class="btn" type="submit" value="{{titles}}">
-    <hr>
 </form>

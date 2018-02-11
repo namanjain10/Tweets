@@ -65,6 +65,28 @@ body{
     font-size: 18px;
 }
 
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+.loader:before {
+    display: block;
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top-color: #333;
+    animation: spinner .6s linear infinite;
+}
+
+
 #searchclear, #searchclear1, #searchclear2{
     position: absolute;
     right: 15px;
