@@ -20,6 +20,7 @@ from tweetApp import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.index.as_view()),
+    url(r'^user/', include('usersApp.urls')),
     url(r'^api/', include('tweetApp.api.urls')),
     url(r'^detail/(?P<id>\d+)/$',views.TweetDetailView.as_view()),
     url(r'^list/',views.TweetListView.as_view()),

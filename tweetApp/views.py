@@ -18,13 +18,12 @@ class TweetDetailView(DetailView):
 class TweetListView(ListView):
     User = get_user_model()
     model = Tweet
-
     def get_context_data(self, *args, **kwargs) :
         context = super(TweetListView, self).get_context_data(*args, **kwargs)
         context['create_form'] = TweetForm()
         context['action_url'] = '/list'
         return context
-    
+
 class TweetCreateView(FormLoginMixin, CreateView):
     form_class = TweetForm
     template_name = 'tweetApp/tweet_create.html'

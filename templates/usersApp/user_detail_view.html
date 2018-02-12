@@ -1,0 +1,9 @@
+{% extends "tweetApp/index.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    {% for obj in object %}
+        {{obj}}<br>
+    {% endfor %}
+
+{% endblock %}
