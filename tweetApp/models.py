@@ -15,7 +15,7 @@ class Tweet (models.Model) :
         return self.content
 
     class Meta :
-        ordering = ['-id']    
+        ordering = ['-id']
 
 # class MyUserManager(BaseUserManager):
 #     def create_user(self, email, date_of_birth, password=None):

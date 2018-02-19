@@ -64,7 +64,14 @@ function ajaxcall(url) {
                             $('<br>'),
                         );
                     }
-                    var u = $('<a>').attr('href','/detail/'+item.id).attr('data-target','#myModal').attr('data-toggle', 'modal') .css('text-decoration','none').css('color','inherit').append($("<li>").addClass('media').css('border','1px solid rgb(221, 221, 224)').css('padding','10px').css('margin-top','14px').append(t));
+                    var u = $('<a>').attr('href','/detail/'+item.id)
+                            .attr('data-target','#myModal').attr('data-toggle', 'modal')
+                            .css('text-decoration','none').css('color','inherit')
+                            .append(
+                                    $("<li>")
+                                    .addClass('media')
+                                    .css('border','1px solid rgb(221, 221, 224)')
+                                    .css('padding','10px').css('margin-top','14px').append(t));
                     r.append(u);
                 });
                 if (next == 1) {
@@ -109,7 +116,6 @@ function scroll() {
         if(($(window).scrollTop() + $(window).height()) > $('body').height() && !busy) {
             busy = true;
             $('.loader').css('display','block');
-            //$this.find('.loading-bar').html('Loading Posts');
             // console.log(nextLink, i);
             if (hasNext == true) {
                 ajaxcall(nextLink);
