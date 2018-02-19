@@ -15,9 +15,10 @@ class TweetDetailView(DetailView):
     def get_object(self, **kwargs) :
         return Tweet.objects.get(id = self.kwargs['id'])
 
-class TweetListView(ListView):
+class TweetListView(LoginRequiredMixin, ListView):
     User = get_user_model()
     model = Tweet
+    login_url = '/admin/login/'
     def get_context_data(self, *args, **kwargs) :
         context = super(TweetListView, self).get_context_data(*args, **kwargs)
         context['create_form'] = TweetForm()
@@ -36,6 +37,7 @@ class TweetUpdateView(LoginRequiredMixin, UserOwnerMixin, UpdateView):
     success_url = '/list/'
     login_url = '/admin/login/'
 
+# how to make delete only for user of that tweet
 class TweetDeleteView (LoginRequiredMixin, DeleteView):
     model = Tweet
     form_class = TweetForm

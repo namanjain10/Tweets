@@ -1,11 +1,18 @@
-{% extends "tweetApp/index.html" %}
-{% load staticfiles %}
-
-{% block content %}
-    <h1>Detail</h1>
-    <p>{{object.user}}</p>
+<div class="modal-body">
+    <!-- <p>{{object.user}}</p>
     <p>{{object.content}}</p>
     <p>{{object.dataCreated}}</p>
-    <p>{{object.dataUpdated}}</p>
-
-{% endblock content%}
+    <p>{{object.dataUpdated}}</p> -->
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    
+    <div class="media-right">
+        <strong>{{object.user}}</strong><br>
+        <br>
+        <div style='font-size:20px'>
+            {{object.content}}
+        </div>
+        <br>
+        <mark>created</mark> {{object.dataCreated|timesince}} ago | <mark>updated</mark> {{object.dataUpdated|timesince}} ago <br><br>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+</div>

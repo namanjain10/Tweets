@@ -21,18 +21,13 @@ var next = 0;
 var hasNext = true;
 
 function ajaxcall(url) {
-    console.log(url);
-
     if (!url) {
-        console.log('start');
         urlLink = "/api/list/";
         next = 1;
     }
     else {
-        console.log('continue');
         urlLink = url;
         next = 0;
-
     }
     $.ajax({
         url: urlLink,
@@ -44,7 +39,6 @@ function ajaxcall(url) {
             }
             else {
                 var r = $('<ul>').addClass("media-list");
-                console.log(response.next);
                 if (response.next == null) {
                     hasNext = false;
                 }
@@ -54,20 +48,25 @@ function ajaxcall(url) {
                 	dataCreated = dateTime(item.dataCreated);
                     dataUpdated = dateTime(item.dataUpdated);
 
-                    var t = $("<li>").addClass('media').css('border','1px solid rgb(221, 221, 224)').css('padding','10px').append(
-                        $('<div>').addClass('media-right').append(
-                            $('<strong>').text(item.user.username),
-                            $('<br><br>'),
-                            $('<div>').css('font-size','20px').css('font-family','ariel').text(item.content),
-                            $('<br>'),$('<mark>').text('created '), dataCreated,
-                            " ago | ", $("<mark>") .text("updated"), dataUpdated + " ago ",
-                            $('<br>'),$('<a>').attr('href','/detail/'+item.id).text(' View')," | ",
+
+                    var t = $('<div>').addClass('media-right').append(
+                        $('<strong>').text(item.user.username),
+                        $('<br><br>'),
+                        $('<div>').css('font-size','20px').css('font-family','ariel').text(item.content),
+                        $('<br>'),$('<mark>').text('created '), dataCreated,
+                        " ago | ", $("<mark>") .text("updated"), dataUpdated + " ago ",
+                        $('<br>'),
+                    )
+                    if ($('#name').text() == item.user.username) {
+                        t.append(
                             $('<a>').attr('href','/delete/'+item.id).text(' Delete'), ' | ',
                             $('<a>').attr('href','/update/'+item.id).text(' Update'),
                             $('<br>'),
-                            ))
-                            r.append(t)
-                    });
+                        );
+                    }
+                    var u = $('<a>').attr('href','/detail/'+item.id).attr('data-target','#myModal').attr('data-toggle', 'modal') .css('text-decoration','none').css('color','inherit').append($("<li>").addClass('media').css('border','1px solid rgb(221, 221, 224)').css('padding','10px').css('margin-top','14px').append(t));
+                    r.append(u);
+                });
                 if (next == 1) {
                     $('.put').html(r);
                 }
@@ -111,7 +110,7 @@ function scroll() {
             busy = true;
             $('.loader').css('display','block');
             //$this.find('.loading-bar').html('Loading Posts');
-            console.log(nextLink, i);
+            // console.log(nextLink, i);
             if (hasNext == true) {
                 ajaxcall(nextLink);
             }

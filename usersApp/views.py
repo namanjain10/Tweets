@@ -7,4 +7,5 @@ class UserDetailView(DetailView):
     template_name = 'usersApp/user_detail_view.html'
     def get_object(self, **kwargs) :
         return Tweet.objects.filter(user_id = self.kwargs['id'])
+
 # Create your views here.
