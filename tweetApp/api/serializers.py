@@ -13,12 +13,21 @@ class UserSerializer(serializers.ModelSerializer) :
 
 class TweetSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
+    timesince = serializers.SerializerMethodField()
+    dataCreated = serializers.SerializerMethodField()
+
     class Meta :
         model = Tweet
         fields = [
             'user',
             'id',
             'content',
+            'timesince',
             'dataCreated',
-            'dataUpdated',
         ]
+
+    def get_timesince (self, obj) :
+        return timesince(obj.dataCreated) + " ago"
+
+    def get_dataCreated (self, obj) :
+        return obj.dataCreated.strftime("%b %d %Y, %I:%M %p")    

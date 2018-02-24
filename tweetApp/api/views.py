@@ -1,6 +1,8 @@
 from tweetApp.models import Tweet
 from .serializers import TweetSerializer
+from rest_framework.views import APIView
 from rest_framework import generics, pagination
+from rest_framework.response import Response
 
 class page (pagination.PageNumberPagination):
     page_size = 10
@@ -18,3 +20,11 @@ class TweetCreate(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+class TweetDetail(APIView) :
+
+    def get(self, request) :
+        query_data = Tweet.objects.filter(id=request.GET['id']).first()
+        print (query_data.content)
+        serializer = TweetSerializer(query_data)
+        return Response(serializer.data)
