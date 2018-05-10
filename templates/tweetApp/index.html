@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>TWEETS</title>
+        <title>TWEETOFY</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static "css/index.css" %}">
 
@@ -22,7 +22,7 @@
                             <span class="icon-bar"></span>
                         </button>
 
-                        <a class="navbar-brand" href="/list/">Tweetme</a>
+                        <a class="navbar-brand" href="/list/">TWEETOFY</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -36,10 +36,6 @@
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
                         </form>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Login</a></li>
-                            <li><a href="#">Sign Up</a></li>
-                        </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
@@ -49,7 +45,14 @@
 
         <div class="container" style = "background-color:white">
         {% block content %}
-
+        <!-- Main Code Goes here -->
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Sign Up</a></li>
+        </ul>
+        <div class="container" style="text-align:center; margin-top:20px">
+            <h1>Welcome to Tweetofy!!!</h1>
+        </div>
         {% endblock content %}
         </div>
         {% block inbody %}
